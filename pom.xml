@@ -3,12 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.4.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.example</groupId>
     <artifactId>ez12345</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -17,10 +19,25 @@
     <url/>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>23</java.version>  <!-- Updated Java version to 23 -->
     </properties>
 
     <dependencies>
+        <!-- the email stuff -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
+        </dependency>
+
+
         <!-- Core dependency for web applications -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -51,19 +68,25 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-
-
         </dependency>
-
     </dependencies>
-
-
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>  <!-- Use the defined property -->
+                    <target>${java.version}</target>  <!-- Use the defined property -->
+                    <compilerArgs>
+                        <arg>--enable-preview</arg>  <!-- Use arg for proper XML syntax -->
+                    </compilerArgs>
+                </configuration>
             </plugin>
         </plugins>
     </build>

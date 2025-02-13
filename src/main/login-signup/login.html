@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Minimal Login</title>
+    <style>
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          font-family: sans-serif;
+        }
+
+        body {
+          background: #fff;
+        }
+
+        /* Header with left arrow and "Login" centered */
+        header {
+          background: #fff;
+          height: 3rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative; /* to position the arrow */
+          font-weight: bold;
+          font-size: 1.2rem;
+        }
+
+        /* Left arrow (non-clickable in this example) */
+        .back-arrow {
+          position: absolute;
+          left: 1rem;
+          font-size: 1.5rem;
+          cursor: pointer; /* If you want it to be clickable */
+        }
+
+        /* Gray container for the form */
+        .login-container {
+          background: #ccc;
+          width: 100%;
+          min-height: calc(100vh - 3rem); /* fill remaining space below header */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        form {
+          display: flex;
+          flex-direction: column;
+          width: 300px;
+        }
+
+        /* Common input styling */
+        input[type="text"],
+        input[type="password"] {
+          border: none;
+          outline: none;
+          background: #fff;
+          padding: 0.75rem 1rem;
+          margin-bottom: 1rem;
+          border-radius: 12px;
+          font-size: 1rem;
+          color: #333;
+        }
+
+        /* Row that holds password + arrow button */
+        .password-row {
+          display: flex;
+          align-items: center;
+          background: #fff;
+          border-radius: 12px;
+          margin-bottom: 1rem;
+        }
+        .password-row input {
+          flex: 1;
+          border: none;
+          outline: none;
+          padding: 0.75rem 1rem;
+          background: transparent;
+          border-radius: 12px 0 0 12px;
+        }
+        .password-row button {
+          border: none;
+          background: transparent;
+          padding: 0.75rem 1rem;
+          cursor: pointer;
+          font-size: 1.25rem;
+          border-radius: 0 12px 12px 0;
+        }
+        .password-row button:hover {
+          background: #eee; /* subtle hover */
+        }
+
+        /* Forget password link */
+        .forgot-link {
+          text-align: right;
+        }
+        .forgot-link a {
+          text-decoration: none;
+          font-size: 0.875rem;
+          color: #444;
+        }
+        .forgot-link a:hover {
+          text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="back-arrow">&larr;</div>
+    Login
+</header>
+
+<div class="login-container">
+    <form>
+        <input type="text" placeholder="Username" required />
+        <div class="password-row">
+            <input type="password" placeholder="password" required />
+            <!-- Use arrow as a minimal "submit" button -->
+            <button type="submit">&rarr;</button>
+        </div>
+        <div class="forgot-link">
+            <a href="forgetpass.html">Forget password</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
