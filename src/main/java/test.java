@@ -8,8 +8,8 @@ public class test {
 
         Scanner sc = new Scanner(System.in);
         // SMTP Configuration
+        String senderPassword = System.getenv("EMAIL_APP_PASSWORD");
         String senderEmail = "burberrith609@gmail.com";
-        String senderPassword = "ktjo khsa ovrk xhfk" ;
         String receiverEmail = "";
 
         System.out.println("Email you want to send to");
