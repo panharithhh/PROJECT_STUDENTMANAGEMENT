@@ -2,15 +2,21 @@ import jakarta.mail.*;
 import jakarta.mail.internet.*;
 import java.util.Properties;
 import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class test {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
         Scanner sc = new Scanner(System.in);
         // SMTP Configuration
         String senderPassword = System.getenv("EMAIL_APP_PASSWORD");
         String senderEmail = "burberrith609@gmail.com";
         String receiverEmail = "";
+        String password_hash = "12345678";
+        String full_name = "Cheapanharith";
 
         System.out.println("Email you want to send to");
         receiverEmail = sc.nextLine();
@@ -26,7 +32,7 @@ public class test {
 
             if(userAnswer.equals(authenticationCode)){
                 System.out.println("Congrats");
-
+                createEducator(full_name, receiverEmail, password_hash);
             }
             else {
                 System.out.println("Wrong code my freind");
@@ -35,6 +41,21 @@ public class test {
 
     }
 
+     static void createEducator(String full_name, String receiverEmail, String password_hash) throws SQLException{
+        String sql = " insert into educators (full_name, email, password_hash) values(?,?,?)";
+
+         String URL = "jdbc:mysql://localhost:3306/test_schem"; // Ensure test_schem is your correct DB
+         String USER = "root"; // Change to your MySQL username
+         String PASSWORD = System.getenv("DB_PASSWORD"); // Ensure this env variable is set
+
+         Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+         PreparedStatement stmt = con.prepareStatement(sql);
+
+         stmt.setString(1, full_name);
+         stmt.setString(2, receiverEmail);
+         stmt.setString(3,password_hash);
+         stmt.executeUpdate();
+     };
     private static boolean sendEmail(String senderEmail, String senderPassword, String receiverEmail, String authenticationCode) {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
