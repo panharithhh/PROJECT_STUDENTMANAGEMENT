@@ -22,7 +22,6 @@ public class test {
         receiverEmail = sc.nextLine();
         String authenticationCode = authenticationGenerator.generateCode();
 
-
         boolean emailSent = sendEmail(senderEmail, senderPassword, receiverEmail, authenticationCode);// Just to send da code to our email
         if(!emailSent){
             System.out.println("Email not sent!");
@@ -55,6 +54,8 @@ public class test {
          stmt.setString(2, receiverEmail);
          stmt.setString(3,password_hash);
          stmt.executeUpdate();
+
+
      };
     private static boolean sendEmail(String senderEmail, String senderPassword, String receiverEmail, String authenticationCode) {
         Properties props = new Properties();
@@ -78,6 +79,8 @@ public class test {
 
             Transport.send(message);
             System.out.println("Email sent successfully.");
+
+
             return true;
         } catch (MessagingException e) {
             e.printStackTrace();

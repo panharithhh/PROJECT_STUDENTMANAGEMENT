@@ -10,7 +10,6 @@ import java.net.URI;
 @SpringBootApplication // allow for a Springboot appplication and removes the needs for alot of configuration manually
 @RestController // this line bascially act as a joint part between the web and the backend
 public class Ez12345Application {
-
     public static void main(String[] args) {
         SpringApplication.run(Ez12345Application.class, args); // this line start the program as a Spring shit
     }
@@ -31,6 +30,5 @@ public class Ez12345Application {
         return ResponseEntity.status(HttpStatus.FOUND)
                 .location(URI.create("/login-signup/authentication.html")) // Use URI, not URl
                 .build();
-
     }
 }

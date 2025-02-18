@@ -70,8 +70,6 @@ CREATE TABLE forum_posts (
     FOREIGN KEY (created_by) REFERENCES educators(educator_id) ON DELETE CASCADE
 ) ;
 
-
-
 select * from educators;
 
 
