@@ -4,10 +4,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import jakarta.mail.*;
-import jakarta.mail.internet.*;
-import java.util.Properties;
-import java.util.Scanner;
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.sql.*;
 
@@ -23,6 +19,7 @@ public class login {
         String[] arrayOfInformation = sqlData();
 
         boolean condition = false;
+
         for(int i =0; i<arrayOfInformation.length; i++){
             if(inputLine.equals(arrayOfInformation[i])){
                 condition = true;
@@ -30,7 +27,6 @@ public class login {
             } else {
                 condition = false;
             }
-
         }
 
         if(condition == true){
@@ -60,7 +56,8 @@ public class login {
             String row = email + " " + password;
             list.add(row);
         }
-        String[] educatorsArray = new String[100];
+
+        String[] educatorsArray;
         educatorsArray = list.toArray(new String[0]);
 
         return educatorsArray;

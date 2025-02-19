@@ -51,25 +51,13 @@ CREATE TABLE quiz_scores (
 ) ;
 
 
-CREATE TABLE forum_threads (
-    thread_id INT AUTO_INCREMENT PRIMARY KEY,
-    course_id INT NOT NULL,
-    title VARCHAR(255) NOT NULL,
-    created_by INT NOT NULL,
-    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE,
-    FOREIGN KEY (created_by) REFERENCES educators(educator_id) ON DELETE CASCADE
-) ;
+create table forums(
 
+    forum_id int auto_increment primary key,
+    topic varchar(200) not null,
+	Description text not null
 
-CREATE TABLE forum_posts (
-    post_id INT AUTO_INCREMENT PRIMARY KEY,
-    thread_id INT NOT NULL,
-    content TEXT NOT NULL,
-    created_by INT NOT NULL,
-    FOREIGN KEY (thread_id) REFERENCES forum_threads(thread_id) ON DELETE CASCADE,
-    FOREIGN KEY (created_by) REFERENCES educators(educator_id) ON DELETE CASCADE
-) ;
+	);
 
-select * from educators;
 
 

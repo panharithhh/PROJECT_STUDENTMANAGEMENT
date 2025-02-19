@@ -11,13 +11,11 @@ public class test {
     public static void main(String[] args) throws SQLException {
 
         Scanner sc = new Scanner(System.in);
-        // SMTP Configuration
         String senderPassword = System.getenv("EMAIL_APP_PASSWORD");
         String senderEmail = "burberrith609@gmail.com";
         String receiverEmail;
         String password_hash;
         String full_name;
-
 
         System.out.println("Email you want to send to");
         receiverEmail = sc.nextLine();
@@ -26,7 +24,6 @@ public class test {
         full_name = sc.nextLine();
         System.out.println("password");
         password_hash = sc.nextLine();
-
 
         boolean emailSent = sendEmail(senderEmail, senderPassword, receiverEmail, authenticationCode);// Just to send da code to our email
         if(!emailSent){
@@ -85,9 +82,8 @@ public class test {
 
             Transport.send(message);
             System.out.println("Email sent successfully.");
-
-
             return true;
+
         } catch (MessagingException e) {
             e.printStackTrace();
             return false;
