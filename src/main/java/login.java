@@ -14,7 +14,7 @@ import java.sql.*;
 
 public class login {
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException,MessagingException {
         Scanner sc = new Scanner(System.in);
         System.out.println("gimme a hug: \n");
         String inputLine = sc.nextLine();
@@ -22,20 +22,25 @@ public class login {
 
         String[] arrayOfInformation = sqlData();
 
-
+        boolean condition = false;
         for(int i =0; i<arrayOfInformation.length; i++){
             if(inputLine.equals(arrayOfInformation[i])){
-                System.out.println("goodjob nga");
+                condition = true;
                 break;
             } else {
-                System.out.println("stupid ass monkey");
+                condition = false;
             }
 
         }
 
+        if(condition == true){
+            System.out.println("Login sucessfull");
+        } else  {
+            System.out.println("Login failed");
+        }
     }
 
-    public static String[] sqlData() throws SQLException {
+    public static String[] sqlData() throws SQLException, MessagingException {
         String sqlString = " select * from educators ";
         String URL = "jdbc:mysql://localhost:3306/test_schem";
         String USER = "root";
@@ -54,16 +59,10 @@ public class login {
 
             String row = email + " " + password;
             list.add(row);
-
         }
         String[] educatorsArray = new String[100];
         educatorsArray = list.toArray(new String[0]);
 
-        for(String i : educatorsArray){
-            System.out.println(i);
-        }
-
         return educatorsArray;
-
     }
 }

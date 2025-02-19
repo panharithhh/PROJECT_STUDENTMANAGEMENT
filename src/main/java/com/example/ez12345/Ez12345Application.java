@@ -11,12 +11,12 @@ import java.net.URI;
 @RestController // this line bascially act as a joint part between the web and the backend
 public class Ez12345Application {
     public static void main(String[] args) {
-        SpringApplication.run(Ez12345Application.class, args); // this line start the program as a Spring shit
+        SpringApplication.run(Ez12345Application.class, args); // starts the spring boot application
     }
 
-    @PostMapping("/submitSignup") // mean that is handles the https post that is send to the submit Signup endpoint
-    public ResponseEntity<Void> receiveSignupData(// so
-            @RequestParam(value = "username") String username,
+    @PostMapping("/submitSignup") // handles http posts request tp /submitSignup
+    public ResponseEntity<Void> receiveSignupData( // don't do anything just receive the response
+             @RequestParam(value = "username") String username,
             @RequestParam(value = "email") String email,
             @RequestParam(value = "password") String password,
             @RequestParam(value = "confirmPassword") String confirmPassword) {

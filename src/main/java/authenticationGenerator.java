@@ -21,5 +21,3 @@ public class authenticationGenerator {
 
     }
 }
-
-// So this is just a shitty code on how to create he secret 6 code

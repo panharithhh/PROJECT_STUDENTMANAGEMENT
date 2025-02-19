@@ -14,13 +14,19 @@ public class test {
         // SMTP Configuration
         String senderPassword = System.getenv("EMAIL_APP_PASSWORD");
         String senderEmail = "burberrith609@gmail.com";
-        String receiverEmail = "";
-        String password_hash = "12345678";
-        String full_name = "Cheapanharith";
+        String receiverEmail;
+        String password_hash;
+        String full_name;
+
 
         System.out.println("Email you want to send to");
         receiverEmail = sc.nextLine();
         String authenticationCode = authenticationGenerator.generateCode();
+        System.out.println("Name: ");
+        full_name = sc.nextLine();
+        System.out.println("password");
+        password_hash = sc.nextLine();
+
 
         boolean emailSent = sendEmail(senderEmail, senderPassword, receiverEmail, authenticationCode);// Just to send da code to our email
         if(!emailSent){
@@ -43,9 +49,9 @@ public class test {
      static void createEducator(String full_name, String receiverEmail, String password_hash) throws SQLException{
         String sql = " insert into educators (full_name, email, password_hash) values(?,?,?)";
 
-         String URL = "jdbc:mysql://localhost:3306/test_schem"; // Ensure test_schem is your correct DB
-         String USER = "root"; // Change to your MySQL username
-         String PASSWORD = System.getenv("DB_PASSWORD"); // Ensure this env variable is set
+         String URL = "jdbc:mysql://localhost:3306/test_schem";
+         String USER = "root";
+         String PASSWORD = System.getenv("DB_PASSWORD");
 
          Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
          PreparedStatement stmt = con.prepareStatement(sql);
