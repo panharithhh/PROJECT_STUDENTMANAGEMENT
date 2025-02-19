@@ -1,11 +1,9 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import signupandlogin.SignUp;
 
 import java.sql.SQLException;
 
@@ -25,7 +23,7 @@ public class TestClassTest {
 
     @Test
     void testSendEmail() {
-        boolean result = test.sendEmail(
+        boolean result = SignUp.sendEmail(
                 validSenderEmail,
                 validSenderPassword,
                 validReceiverEmail,
@@ -41,7 +39,7 @@ public class TestClassTest {
         String password = "test1234";
 
         try {
-            test.createEducator(name, email, password);
+            SignUp.createEducator(name, email, password);
             Assertions.assertTrue(true, "Educator created without error.");
         } catch (SQLException e) {
             Assertions.fail("SQLException occurred: " + e.getMessage());

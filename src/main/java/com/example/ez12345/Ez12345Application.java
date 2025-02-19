@@ -28,7 +28,7 @@ public class Ez12345Application {
         System.out.println("Received Signup Data: " + username + ", " + email);
  // Corrected redirection to authentication.html
         return ResponseEntity.status(HttpStatus.FOUND)
-                .location(URI.create("/login-signup/authentication.html")) // Use URI, not URl
+                .location(URI.create("/signupandlogin.login-signup/authentication.html")) // Use URI, not URl
                 .build();
     }
 }

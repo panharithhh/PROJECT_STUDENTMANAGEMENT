@@ -1,5 +1,5 @@
-import jakarta.mail.*;
-import jakarta.mail.internet.*;
+package coursecheckprogress;
+
 import java.util.*;
 import java.sql.*;
 public class StudentManagement {

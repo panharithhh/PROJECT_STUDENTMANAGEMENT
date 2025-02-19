@@ -1,5 +1,8 @@
+package signupandlogin;
+
 import jakarta.mail.*;
 import jakarta.mail.internet.*;
+
 import java.util.Properties;
 import java.util.Scanner;
 import java.sql.Connection;
@@ -7,7 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class test {
+public class SignUp {
     public static void main(String[] args) throws SQLException {
 
         Scanner sc = new Scanner(System.in);

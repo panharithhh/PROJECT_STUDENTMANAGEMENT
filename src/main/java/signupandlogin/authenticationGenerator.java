@@ -1,5 +1,5 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+package signupandlogin;
+
 import java.util.Random;
 
 public class authenticationGenerator {
