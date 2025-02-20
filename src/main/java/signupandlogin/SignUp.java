@@ -61,8 +61,9 @@ public class SignUp {
          stmt.setString(3,password_hash);
          stmt.executeUpdate();
 
-
      };
+
+
     private static boolean sendEmail(String senderEmail, String senderPassword, String receiverEmail, String authenticationCode) {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");

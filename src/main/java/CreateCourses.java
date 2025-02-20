@@ -1,9 +1,6 @@
 import java.util.*;
 import java.sql.*;
 
-// course_title varchar(123) not null,
-// description Text,
-
 public class CreateCourses {
 
     private static final String URL = "jdbc:mysql://localhost:3306/test_schem";
@@ -53,6 +50,7 @@ public class CreateCourses {
     }
 
     public static void deleteCourses(int deleteChoice) throws SQLException{
+
         String sql = " delete from courses where courses_id = ? ";
 
         Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
