@@ -34,7 +34,6 @@ public class CreateCourses {
             deleteCourses(deleteChoice);
 
         }
-
     }
 
     public static void CreateCourses(String title, String text) throws SQLException{
@@ -51,13 +50,13 @@ public class CreateCourses {
 
     public static void deleteCourses(int deleteChoice) throws SQLException{
 
-        String sql = " delete from courses where courses_id = ? ";
+        String sql = " delete from courses where course_id = ? ";
 
         Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
         PreparedStatement stmt = con.prepareStatement(sql);
 
         stmt.setInt(1,deleteChoice);
-
         stmt.executeUpdate();
+
     }
 }

@@ -1,7 +1,7 @@
 package coursecheckprogress;
-
 import java.util.*;
 import java.sql.*;
+
 public class StudentManagement {
 
     private static final String URL = "jdbc:mysql://localhost:3306/test_schem";
@@ -15,7 +15,6 @@ public class StudentManagement {
         String choice;
         int deleteChoice;
 
-
         Scanner sc = new Scanner(System.in);
         System.out.println("add or minus");
         choice = sc.nextLine();
@@ -27,21 +26,17 @@ public class StudentManagement {
             full_name = sc.nextLine();
             System.out.println("Attedance percentage: ");
             attendance_percentage = sc.nextInt();
-
             sendData( full_name, attendance_percentage);
 
         } else if (choice.equals("m")){
             System.out.println("Enter the number of student you want to delete ");
             deleteChoice = sc.nextInt();
-
             deleteStudent(deleteChoice);
-
-
         }
     }
 
     public static void sendData( String full_name, int attendance_percentage) throws SQLException{
-        String sql = "insert into students( full_name, attendance_percentage ) values (?,?)";
+        String sql = "insert into students( full_name, id ) values (?,?)";
 
         Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
         PreparedStatement stmt = con.prepareStatement(sql);
@@ -62,9 +57,5 @@ public class StudentManagement {
 
         stmt.executeUpdate();
 
-
-
     }
-
-
 }

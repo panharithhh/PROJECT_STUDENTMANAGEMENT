@@ -20,7 +20,7 @@ public class SignUp {
         String password_hash;
         String full_name;
 
-        System.out.println("Email you want to send to");
+        System.out.println("Email");
         receiverEmail = sc.nextLine();
         String authenticationCode = authenticationGenerator.generateCode();
         System.out.println("Name: ");
@@ -34,7 +34,6 @@ public class SignUp {
         } else {
             System.out.println("Enter the user Authentication code");
             String userAnswer = sc.nextLine();
-
             if(userAnswer.equals(authenticationCode)){
                 System.out.println("Congrats");
                 createEducator(full_name, receiverEmail, password_hash);
@@ -52,7 +51,6 @@ public class SignUp {
          String URL = "jdbc:mysql://localhost:3306/test_schem";
          String USER = "root";
          String PASSWORD = System.getenv("DB_PASSWORD");
-
          Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
          PreparedStatement stmt = con.prepareStatement(sql);
 

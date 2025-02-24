@@ -16,7 +16,6 @@ public class forgetpass {
         Scanner sc = new Scanner(System.in);
         System.out.println(" Enter your email");
         String email = sc.nextLine();
-
         sendPassword(email);
 
     }
