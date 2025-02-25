@@ -56,6 +56,5 @@ public class StudentManagement {
         stmt.setInt(1,deleteChoice);
 
         stmt.executeUpdate();
-
     }
 }
