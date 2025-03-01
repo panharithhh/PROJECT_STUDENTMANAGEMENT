@@ -1,5 +1,4 @@
 package signupandlogin;
-
 import java.util.Random;
 
 public class authenticationGenerator {

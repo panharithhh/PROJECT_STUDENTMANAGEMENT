@@ -71,11 +71,14 @@ public class SignUp {
 
         Session session = Session.getInstance(props, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
+
                 return new PasswordAuthentication(senderEmail, senderPassword);
+
             }
         });
 
         try {
+
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(senderEmail));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiverEmail));

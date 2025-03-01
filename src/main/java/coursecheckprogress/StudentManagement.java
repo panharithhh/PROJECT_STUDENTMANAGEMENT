@@ -24,7 +24,7 @@ public class StudentManagement {
             System.out.println("Enter student detail");
             System.out.println("fullname:");
             full_name = sc.nextLine();
-            System.out.println("Attedance percentage: ");
+            System.out.println("the student ID: ");
             attendance_percentage = sc.nextInt();
             sendData( full_name, attendance_percentage);
 
@@ -56,5 +56,6 @@ public class StudentManagement {
         stmt.setInt(1,deleteChoice);
 
         stmt.executeUpdate();
+
     }
 }

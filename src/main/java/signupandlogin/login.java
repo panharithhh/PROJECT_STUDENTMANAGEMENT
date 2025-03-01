@@ -1,12 +1,7 @@
 package signupandlogin;
 
-import java.util.Scanner;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.util.*;
 import jakarta.mail.*;
-import java.util.ArrayList;
 import java.sql.*;
 
 
@@ -14,7 +9,7 @@ public class login {
 
     public static void main(String[] args) throws SQLException,MessagingException {
         Scanner sc = new Scanner(System.in);
-        System.out.println("gimme a hug: \n");
+        System.out.println("Give me your login credential : email then password: \n");
         String inputLine = sc.nextLine();
         System.out.println(inputLine);
 

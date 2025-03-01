@@ -5,6 +5,19 @@ import java.sql.*;
 class Students {
     private int student_id;
     private String full_name;
+    private int attendance;
+
+    public Students(int attendance) {
+        this.attendance = attendance;
+    }
+
+    public int getAttendance() {
+        return attendance;
+    }
+
+    public void setAttendance(int attendance) {
+        this.attendance = attendance;
+    }
 
     public Students(int student_id, String full_name) {
         this.student_id = student_id;
@@ -57,10 +70,11 @@ public class Scores {
         if(studentObj == null){
             System.out.println("invalid student_id");
         }else {
+
             String full_name = studentObj.getFull_name();
             int student_id = studentObj.getStudent_id();
-
             sendScores(full_name, student_id, homework, midterm, final_score, project);
+
         }
     }
 
@@ -83,12 +97,12 @@ public class Scores {
         }
 
         return null;
+
     }
 
     public static void sendScores (String full_name, int student_id, double homework, double midterm, double final_score, double project) throws SQLException{
 
         String sql = " insert into scores (student_id, full_name, homework, midterm, final,project) values(?,?,?,?,?,?)";
-
 
         Connection con = DriverManager.getConnection(URL,USER,PASSWORD);
         PreparedStatement stmt = con.prepareStatement(sql);
