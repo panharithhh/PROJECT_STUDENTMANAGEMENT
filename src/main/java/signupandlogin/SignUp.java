@@ -2,13 +2,13 @@ package signupandlogin;
 
 import jakarta.mail.*;
 import jakarta.mail.internet.*;
-
 import java.util.Properties;
 import java.util.Scanner;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+ import org.mindrot.jbcrypt.BCrypt;
 
 public class SignUp {
     public static void main(String[] args) throws SQLException {
@@ -53,10 +53,10 @@ public class SignUp {
          String PASSWORD = System.getenv("DB_PASSWORD");
          Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
          PreparedStatement stmt = con.prepareStatement(sql);
-
+         String encryptedPassword = BCrypt.hashpw(password_hash, BCrypt.gensalt()); // diff salt (password-hashfunc) even the same password we can't really tell
          stmt.setString(1, full_name);
          stmt.setString(2, receiverEmail);
-         stmt.setString(3,password_hash);
+         stmt.setString(3,encryptedPassword);
          stmt.executeUpdate();
 
      };

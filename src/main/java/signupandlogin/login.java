@@ -1,62 +1,49 @@
 package signupandlogin;
 
 import java.util.*;
-import jakarta.mail.*;
 import java.sql.*;
-
+import org.mindrot.jbcrypt.BCrypt;
 
 public class login {
 
-    public static void main(String[] args) throws SQLException,MessagingException {
+    public static void main(String[] args) throws SQLException {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Give me your login credential : email then password: \n");
-        String inputLine = sc.nextLine();
-        System.out.println(inputLine);
 
-        String[] arrayOfInformation = sqlData();
+        System.out.println("Enter your email:");
+        String typedEmail = sc.nextLine();
+        System.out.println("Enter your password:");
+        String typedPassword = sc.nextLine();
 
-        boolean condition = false;
+            boolean success = verifyCredentials(typedEmail, typedPassword);
 
-        for(int i =0; i<arrayOfInformation.length; i++){
-            if(inputLine.equals(arrayOfInformation[i])){
-                condition = true;
-                break;
+            if (success) {
+                System.out.println("Login successful");
             } else {
-                condition = false;
+                System.out.println("Login failed");
             }
-        }
-
-        if(condition == true){
-            System.out.println("Login sucessfull");
-        } else  {
-            System.out.println("Login failed");
-        }
     }
 
-    public static String[] sqlData() throws SQLException, MessagingException {
-        String sqlString = " select * from educators ";
+    private static boolean verifyCredentials(String email, String plainPassword) throws SQLException {
         String URL = "jdbc:mysql://localhost:3306/test_schem";
         String USER = "root";
         String PASSWORD = System.getenv("DB_PASSWORD");
+        String sql = "SELECT password_hash FROM educators WHERE email = ?";
 
-        Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement stmt = con.prepareStatement(sqlString);
+        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement stmt = con.prepareStatement(sql)) {
 
-        ResultSet rs = stmt.executeQuery();
 
-        ArrayList<String >list = new ArrayList<>();
+            stmt.setString(1, email);
 
-        while(rs.next()){
-            String email = rs.getString("email");
-            String password = rs.getString("password_hash");
+            try (ResultSet rs = stmt.executeQuery()) { // extract the sql string and store in rs
+                if (rs.next()) { // take the data only from the first row
+                    String storedHash = rs.getString("password_hash");
+                    return BCrypt.checkpw(plainPassword, storedHash);// compare plain and the sql pass
 
-            String row = email + " " + password;
-            list.add(row);
+                } else {
+                    return false;
+                }
+            }
         }
-
-        String[] educatorsArray;
-        educatorsArray = list.toArray(new String[0]);
-
-        return educatorsArray;
     }
 }

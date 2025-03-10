@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Quiz</title>
+    <title>Attendance</title>
     <style>
-        /* Similar styling as attendance.html */
         * {
           box-sizing: border-box;
           margin: 0;
@@ -33,7 +32,12 @@
         .top-nav a:hover {
           background: #eee;
         }
+        .top-nav a.active {
+          font-weight: bold;
+          border-bottom: 2px solid #333;
+        }
 
+        /* Sub-nav for Manage Student pages */
         .sub-nav {
           background: #fff;
           border-bottom: 1px solid #ddd;
@@ -56,7 +60,7 @@
           background: #eee;
         }
 
-        /* Hidden checkbox for "Add Student" modal */
+        /* Modals: same as manage_student, if you want to allow "Add Student" from here too */
         #openAddModal {
           display: none;
         }
@@ -96,6 +100,10 @@
           display: flex;
           flex-direction: column;
           margin-top: 1rem;
+        }
+        .modal-content form label {
+          margin-top: 1rem;
+          font-weight: bold;
         }
         .modal-content form input {
           margin-top: 0.5rem;
@@ -139,31 +147,31 @@
 </head>
 <body>
 
-<!-- Hidden checkbox for "Add Student" modal -->
+<!-- Hidden checkbox for "Add Student" modal if you want it on attendance page -->
 <input type="checkbox" id="openAddModal">
 
 <!-- TOP NAV -->
 <div class="top-nav">
-    <a href="manage_student.html">Manage Student</a>
+    <a href="../templates/manage_student.html">Manage Student</a>
     <a href="create_courses.html">Create Courses</a>
     <a href="forum.html">Forum</a>
 </div>
 
-<!-- SUB NAV -->
+<!-- SUB NAV (same for all Manage Student pages) -->
 <div class="sub-nav">
     <label for="openAddModal">Add Student</label>
-    <a href="attendance.html">Attendance</a>
-    <a href="quiz.html" style="border-bottom:2px solid #333;">Quiz</a>
+    <a href="attendance.html" style="border-bottom:2px solid #333;">Attendance</a>
+    <a href="quiz.html">Quiz</a>
     <a href="progress.html">Progress</a>
 </div>
 
 <!-- MAIN CONTAINER -->
 <div class="container">
-    <h1>Quiz</h1>
-    <p>Placeholder content for quiz-related info.</p>
+    <h1>Attendance</h1>
+    <p>Placeholder content for attendance tracking.</p>
 </div>
 
-<!-- ADD STUDENT MODAL -->
+<!-- ADD STUDENT MODAL (optional) -->
 <div class="modal addModal">
     <div class="modal-content">
         <label for="openAddModal" class="closeBtn">×</label>
@@ -182,6 +190,8 @@
         </form>
     </div>
 </div>
+
+
 
 </body>
 </html>

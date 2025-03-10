@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <title>Minimal Login</title>
     <style>
+
         * {
           box-sizing: border-box;
           margin: 0;
@@ -15,31 +16,28 @@
           background: #fff;
         }
 
-        /* Header with left arrow and "Login" centered */
         header {
           background: #fff;
           height: 3rem;
           display: flex;
           align-items: center;
           justify-content: center;
-          position: relative; /* to position the arrow */
+          position: relative;
           font-weight: bold;
           font-size: 1.2rem;
         }
 
-        /* Left arrow (non-clickable in this example) */
         .back-arrow {
           position: absolute;
           left: 1rem;
           font-size: 1.5rem;
-          cursor: pointer; /* If you want it to be clickable */
+          cursor: pointer;
         }
 
-        /* Gray container for the form */
-        .signupandlogin.login-container {
+        .login-container {
           background: #ccc;
           width: 100%;
-          min-height: calc(100vh - 3rem); /* fill remaining space below header */
+          min-height: calc(100vh - 3rem);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -51,20 +49,18 @@
           width: 300px;
         }
 
-        /* Common input styling */
-        input[type="text"],
+        input[type="email"],
         input[type="password"] {
           border: none;
           outline: none;
           background: #fff;
           padding: 0.75rem 1rem;
-          margin-bottom: 1rem;
+          magin-bottom: 1rem;
           border-radius: 12px;
           font-size: 1rem;
           color: #333;
         }
 
-        /* Row that holds password + arrow button */
         .password-row {
           display: flex;
           align-items: center;
@@ -89,10 +85,9 @@
           border-radius: 0 12px 12px 0;
         }
         .password-row button:hover {
-          background: #eee; /* subtle hover */
+          background: #eee;
         }
 
-        /* Forget password link */
         .forgot-link {
           text-align: right;
         }
@@ -104,6 +99,12 @@
         .forgot-link a:hover {
           text-decoration: underline;
         }
+
+        .error-msg {
+          color: red;
+          text-align: center;
+          margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -114,15 +115,18 @@
 </header>
 
 <div class="login-container">
-    <form>
-        <input type="text" placeholder="Username" required />
+    <form method="post" th:action="@{/login}">
+        <input type="email" name="email" placeholder="Email" required />
         <div class="password-row">
-            <input type="password" placeholder="password" required />
-
+            <input type="password" name="password" placeholder="Password" required />
             <button type="submit">&rarr;</button>
         </div>
+
+        <!-- Error message from backend -->
+        <div class="error-msg" th:if="${error}" th:text="${error}"></div>
+
         <div class="forgot-link">
-            <a href="forgetpass.html">Forget password</a>
+            <a href="/forgetpass">Forget password</a>
         </div>
     </form>
 </div>

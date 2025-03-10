@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Forum</title>
+    <title>Create Courses</title>
     <style>
         /* Basic Reset + Font */
         * {
@@ -12,23 +12,23 @@
           font-family: sans-serif;
         }
         body {
-          background: #fff;
-          color: #333;
+          background: #fff; /* white background */
+          color: #333;      /* dark text */
         }
 
         /* Top Navigation Bar (white) */
         .top-nav {
           background: #fff;
           border-bottom: 1px solid #ddd;
-          padding: 1rem;
+          padding: 1rem; /* more spacious */
           display: flex;
-          justify-content: center;
-          gap: 2rem;
+          justify-content: center; /* center the nav items */
+          gap: 2rem;              /* spacing between items */
         }
         .top-nav a {
           color: #333;
           text-decoration: none;
-          padding: 0.5rem 1.5rem;
+          padding: 0.5rem 1.5rem; /* bigger padding for more space */
           border-radius: 0.5rem;
           transition: background 0.2s;
         }
@@ -55,10 +55,10 @@
           max-width: 1200px;
           padding: 2rem;
           border-radius: 0.5rem;
-          color: #000;
+          color: #000; /* black text on gray background */
         }
 
-        /* Buttons: Add Post, Remove Post */
+        /* Buttons: Add Course, Remove Course */
         .btn {
           display: inline-block;
           background: #4CAF50;
@@ -76,7 +76,7 @@
           background: #45a049;
         }
 
-        /* Modal overlays */
+        /* Modal overlays (hidden by default) */
         .modal {
           display: none;
           position: fixed;
@@ -163,56 +163,56 @@
 </head>
 <body>
 
-<!-- Hidden checkboxes for Add/Remove Post modals -->
+<!-- Hidden checkboxes for Add/Remove modals -->
 <input type="checkbox" id="openAddModal">
 <input type="checkbox" id="openRemoveModal">
 
 <!-- TOP NAV -->
 <div class="top-nav">
-    <a href="manage_student.html">Manage Student</a>
-    <a href="create_courses.html">Create Courses</a>
-    <a href="forum.html" class="active">Forum</a>
+    <a href="../templates/manage_student.html">Manage Student</a>
+    <a href="create_courses.html" class="active">Create Courses</a>
+    <a href="forum.html">Forum</a>
 </div>
 
 <!-- MAIN CONTAINER -->
 <div class="container">
-    <h1>Forum</h1>
-    <p>Placeholder content for forum discussions.</p>
+    <h1>Create / Manage Courses</h1>
+    <p>Placeholder content for adding or removing courses.</p>
 
     <!-- Buttons that open modals -->
-    <label for="openAddModal" class="btn">Add Post</label>
-    <label for="openRemoveModal" class="btn">Remove Post</label>
+    <label for="openAddModal" class="btn">Add Course</label>
+    <label for="openRemoveModal" class="btn">Remove Course</label>
 </div>
 
-<!-- ADD POST MODAL -->
+<!-- ADD COURSE MODAL -->
 <div class="modal addModal">
     <div class="modal-content">
         <!-- “Close” unchecks #openAddModal -->
         <label for="openAddModal" class="closeBtn">×</label>
-        <h2>Add Forum Post</h2>
+        <h2>Add Course</h2>
         <form>
-            <label for="postTitle">Post Title:</label>
-            <input type="text" id="postTitle" name="postTitle" required>
+            <label for="courseName">Course Name:</label>
+            <input type="text" id="courseName" name="courseName" required>
 
-            <label for="postContent">Content:</label>
-            <input type="text" id="postContent" name="postContent" required>
+            <label for="courseId">Course ID:</label>
+            <input type="text" id="courseId" name="courseId" required>
 
-            <button type="submit" class="submit">Add Post</button>
+            <button type="submit" class="submit">Add Course</button>
         </form>
     </div>
 </div>
 
-<!-- REMOVE POST MODAL -->
+<!-- REMOVE COURSE MODAL -->
 <div class="modal removeModal">
     <div class="modal-content">
         <!-- “Close” unchecks #openRemoveModal -->
         <label for="openRemoveModal" class="closeBtn">×</label>
-        <h2>Remove Forum Post</h2>
+        <h2>Remove Course</h2>
         <form>
-            <label for="removePostId">Enter Post ID to Remove:</label>
-            <input type="text" id="removePostId" name="removePostId" required>
+            <label for="removeCourseId">Enter Course ID to Remove:</label>
+            <input type="text" id="removeCourseId" name="removeCourseId" required>
 
-            <button type="submit" class="submit">Remove Post</button>
+            <button type="submit" class="submit">Remove Course</button>
         </form>
     </div>
 </div>
