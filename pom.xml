@@ -57,6 +57,8 @@
         </dependency>
 
 
+
+
         <!-- Core dependency for web applications -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -78,10 +80,7 @@
 
         <!-- thymeLeaf -->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
+
 
         <!-- Data JPA for database integration -->
         <dependency>

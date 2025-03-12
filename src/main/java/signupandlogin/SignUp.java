@@ -42,7 +42,6 @@ public class SignUp {
                 System.out.println("Wrong code my freind");
             }
         }
-
     }
 
      static void createEducator(String full_name, String receiverEmail, String password_hash) throws SQLException{
@@ -53,7 +52,7 @@ public class SignUp {
          String PASSWORD = System.getenv("DB_PASSWORD");
          Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
          PreparedStatement stmt = con.prepareStatement(sql);
-         String encryptedPassword = BCrypt.hashpw(password_hash, BCrypt.gensalt()); // diff salt (password-hashfunc) even the same password we can't really tell
+         String encryptedPassword = BCrypt.hashpw(password_hash, BCrypt.gensalt());
          stmt.setString(1, full_name);
          stmt.setString(2, receiverEmail);
          stmt.setString(3,encryptedPassword);

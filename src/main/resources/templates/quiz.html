@@ -1,3 +1,5 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -144,17 +146,18 @@
 
 <!-- TOP NAV -->
 <div class="top-nav">
-    <a href="../templates/manage_student.html">Manage Student</a>
-    <a href="create_courses.html">Create Courses</a>
-    <a href="forum.html">Forum</a>
+
+    <a th:href="@{/manage_student}">Manage Student</a>
+    <a th:href="@{/create_courses}">Create Courses</a>
+    <a th:href="@{/forum}">Forum</a>
 </div>
 
 <!-- SUB NAV -->
 <div class="sub-nav">
     <label for="openAddModal">Add Student</label>
-    <a href="attendance.html">Attendance</a>
-    <a href="quiz.html" style="border-bottom:2px solid #333;">Quiz</a>
-    <a href="progress.html">Progress</a>
+    <a th:href="@{/attendance}">Attendance</a>
+    <a th:href="@{/quiz}" style="border-bottom:2px solid #333;">Quiz</a>
+    <a th:href="@{/progress}">Progress</a>
 </div>
 
 <!-- MAIN CONTAINER -->

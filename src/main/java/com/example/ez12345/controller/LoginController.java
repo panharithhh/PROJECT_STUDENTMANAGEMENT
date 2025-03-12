@@ -17,8 +17,6 @@ public class LoginController {
         this.env = env; //
     }
 
-
-
     @GetMapping("/login")
     public String showLoginForm() {
         return "login";
@@ -36,14 +34,14 @@ public class LoginController {
         return "manage_student";
     }
 
-
-
     private boolean verifyCredentials(String email, String plainPassword) {
         String sql = "SELECT password_hash FROM educators WHERE email = ?";
         try (Connection con = DriverManager.getConnection(
+
                 env.getProperty("spring.datasource.url"),
                 env.getProperty("spring.datasource.username"),
                 env.getProperty("spring.datasource.password"));
+
              PreparedStatement stmt = con.prepareStatement(sql)) {
 
             stmt.setString(1, email);

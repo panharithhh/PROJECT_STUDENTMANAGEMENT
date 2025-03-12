@@ -1,3 +1,4 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -151,18 +152,19 @@
 <input type="checkbox" id="openAddModal">
 
 <!-- TOP NAV -->
+<!-- TOP NAV -->
 <div class="top-nav">
-    <a href="../templates/manage_student.html">Manage Student</a>
-    <a href="create_courses.html">Create Courses</a>
-    <a href="forum.html">Forum</a>
+    <a href="/manage_student">Manage Student</a>
+    <a href="/create_courses">Create Courses</a>
+    <a href="/forum">Forum</a>
 </div>
 
 <!-- SUB NAV (same for all Manage Student pages) -->
 <div class="sub-nav">
     <label for="openAddModal">Add Student</label>
-    <a href="attendance.html" style="border-bottom:2px solid #333;">Attendance</a>
-    <a href="quiz.html">Quiz</a>
-    <a href="progress.html">Progress</a>
+    <a href="/attendance" style="border-bottom:2px solid #333;">Attendance</a>
+    <a href="/quiz">Quiz</a>
+    <a href="/progress">Progress</a>
 </div>
 
 <!-- MAIN CONTAINER -->
@@ -176,7 +178,7 @@
     <div class="modal-content">
         <label for="openAddModal" class="closeBtn">×</label>
         <h2>Add Student</h2>
-        <form>
+        <form th:action="@{/add_student}" method="post">
             <label>Student Name:</label>
             <input type="text" required>
 

@@ -32,7 +32,6 @@ public class login {
         try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement stmt = con.prepareStatement(sql)) {
 
-
             stmt.setString(1, email);
 
             try (ResultSet rs = stmt.executeQuery()) { // extract the sql string and store in rs

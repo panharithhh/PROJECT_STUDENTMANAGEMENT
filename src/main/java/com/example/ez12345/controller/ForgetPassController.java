@@ -23,7 +23,7 @@ public class ForgetPassController {
 
     @GetMapping
     public String showForgetPassPage() {
-        return "forgetpass"; // ✅ This must match forgetpass.html in templates/
+        return "forgetpass"; //
     }
 
     @PostMapping
@@ -41,7 +41,7 @@ public class ForgetPassController {
                 if (rs.next()) {
                     String storedPassword = rs.getString("password_hash");
 
-                    // ✅ Send email with password
+
                     sendEmail(email, storedPassword);
                     model.addAttribute("message", "Password sent to your email.");
                 } else {
@@ -53,7 +53,7 @@ public class ForgetPassController {
             e.printStackTrace();
         }
 
-        return "forgetpass"; // ✅ Stay on the same page with feedback
+        return "forgetpass";
     }
 
     private void sendEmail(String toEmail, String password) {

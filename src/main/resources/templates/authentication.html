@@ -1,3 +1,4 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,13 +81,10 @@
   </header>
 
   <div class="auth-container">
-    <form>
+    <form th:action="@{/auth}" method="post">
+      <input type="hidden" name="email" th:value="${email}" /> <!-- Pass email dynamically -->
       <div class="code-row">
-        <input
-          type="text"
-          placeholder="Code"
-          required
-        />
+        <input type="text" name="authCode" placeholder="Enter Code" required />
         <button type="submit">&rarr;</button>
       </div>
     </form>
