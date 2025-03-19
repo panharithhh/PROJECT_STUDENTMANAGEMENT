@@ -14,7 +14,6 @@ import java.util.List;
 @Controller
 public class ManageStudentController {
 
-
     private final Environment env; // Interface and object
 
     public ManageStudentController(Environment env) {

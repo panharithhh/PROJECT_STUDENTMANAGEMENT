@@ -11,10 +11,7 @@ public class AttendanceController {
         this.env = env;
     }
 
-    @GetMapping("/attendance")
-    public String showAttendance() {
-        return "attendance";
-    }
+
 
 
 }
