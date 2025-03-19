@@ -1,63 +1,43 @@
+
 CREATE TABLE educators (
-    educator_id INT AUTO_INCREMENT PRIMARY KEY,
+    educator_id INT NOT NULL AUTO_INCREMENT,
     full_name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL
-);
+    password_hash VARCHAR(255) NOT NULL,
 
-CREATE TABLE courses(
-	course_id int auto_increment primary key,
-    educator_id int not null,
-    course_title varchar(123) not null,
-    description Text,
-    Foreign key(educator_id) references educators(educator_id) on delete cascade);
+);
 
 CREATE TABLE students (
-    student_id INT AUTO_INCREMENT PRIMARY KEY,
-    teacher_id INT NOT NULL,
-    full_name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    FOREIGN KEY (teacher_id) REFERENCES educators(educator_id) ON DELETE CASCADE
+    student_id INT PRIMARY KEY AUTO_INCREMENT,
+    full_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    course VARCHAR(255) NOT NULL,
+    academic_year VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE course_enrollments (
-    enrollment_id INT AUTO_INCREMENT PRIMARY KEY,
-    course_id INT NOT NULL,
-    student_id INT NOT NULL,
-    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE,
-    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE,
-    UNIQUE (course_id, student_id)
-) ;
+-- Select data to verify
+SELECT * FROM students;
+ALTER TABLE students ADD COLUMN attendance INT DEFAULT 0;
+ALTER TABLE students ADD COLUMN attendance_percentage DECIMAL(5,2) DEFAULT 0.00;
+-- Select data to verify ( i don't think score here will wrk)
+create table scores(
+
+	student_id int,
+	full_name varchar(254),
+    homework double not null,
+    midterm double not null,
+    final double not null,
+    project double not null,
+    foreign key(student_id) references students(student_id) on delete cascade
+
+    );
 
 
-CREATE TABLE quizzes (
-    quiz_id INT AUTO_INCREMENT PRIMARY KEY,
-    course_id INT NOT NULL,
-    quiz_title VARCHAR(255) NOT NULL,
-    description TEXT,
-    total_points INT NOT NULL,
-    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE
-) ;
+    create table attendance (
 
+    	student_id int,
+        full_name varchar(100),
+        attendance int,
+    	foreign key(student_id) references students(student_id) on delete cascade
 
-CREATE TABLE quiz_scores (
-    score_id INT AUTO_INCREMENT PRIMARY KEY,
-    quiz_id INT NOT NULL,
-    student_id INT NOT NULL,
-    score INT NOT NULL,
-    FOREIGN KEY (quiz_id) REFERENCES quizzes(quiz_id) ON DELETE CASCADE,
-    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE,
-    UNIQUE (quiz_id, student_id)
-) ;
-
-
-create table forums(
-
-    forum_id int auto_increment primary key,
-    topic varchar(200) not null,
-	Description text not null
-
-	);
-
-
-
+    );

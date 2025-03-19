@@ -22,6 +22,11 @@ public class ForgetPassController {
         this.env = env;
     }
 
+    @GetMapping("/attendance")
+    public String showAttendance() {
+        return "attendance";
+    }
+
     @GetMapping
     public String showForgetPassPage() {
         return "forgetpass"; //

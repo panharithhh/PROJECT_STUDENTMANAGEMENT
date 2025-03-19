@@ -68,6 +68,7 @@ spring.datasource.password=your_password
 
 3. **Environment Variables**:
     - Set the DB_PASSWORD environment variable in your run configuration
+    - Set the APP_PASSWORD environment variable in your run configuration
 
 ### Running the Application
 

@@ -113,11 +113,12 @@ public class ManageStudentController {
 
 
     public class Student {
-        private final int studentId;
-        private final String fullName;
-        private final String email;
-        private final String course;
-        private final String academicYear;
+        private  int studentId;
+        private  String fullName;
+        private  String email;
+        private  String course;
+        private  String academicYear;
+
 
 
         public Student(int studentId, String fullName, String email, String course, String academicYear) {
@@ -126,7 +127,12 @@ public class ManageStudentController {
             this.email = email;
             this.course = course;
             this.academicYear = academicYear;
+
+
         }
+
+
+
 
         public int getStudentId() {
             return studentId;
