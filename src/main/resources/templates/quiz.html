@@ -141,8 +141,7 @@
 </head>
 <body>
 
-<!-- Hidden checkbox for "Add Student" modal -->
-<input type="checkbox" id="openAddModal">
+
 
 <!-- TOP NAV -->
 <div class="top-nav">
@@ -154,7 +153,7 @@
 
 <!-- SUB NAV -->
 <div class="sub-nav">
-    <label for="openAddModal">Add Student</label>
+
     <a th:href="@{/attendance}">Attendance</a>
     <a th:href="@{/quiz}" style="border-bottom:2px solid #333;">Quiz</a>
     <a th:href="@{/progress}">Progress</a>
@@ -166,25 +165,7 @@
     <p>Placeholder content for quiz-related info.</p>
 </div>
 
-<!-- ADD STUDENT MODAL -->
-<div class="modal addModal">
-    <div class="modal-content">
-        <label for="openAddModal" class="closeBtn">×</label>
-        <h2>Add Student</h2>
-        <form>
-            <label>Student Name:</label>
-            <input type="text" required>
-
-            <label>Student Email:</label>
-            <input type="email" required>
-
-            <label>Student ID:</label>
-            <input type="text" required>
-
-            <button type="submit">Add Student</button>
-        </form>
-    </div>
-</div>
+<!-- Removed Add Student Modal -->
 
 </body>
 </html>

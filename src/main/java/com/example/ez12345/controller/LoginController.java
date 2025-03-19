@@ -11,6 +11,7 @@ import org.mindrot.jbcrypt.BCrypt;
 @Controller // act as the center point connecting web with backend
 public class LoginController {
 
+
     private final Environment env; // Interface and object
 
     public LoginController(Environment env) {
@@ -29,10 +30,7 @@ public class LoginController {
         return verifyCredentials(email, password) ? "redirect:/manage_student" : setError(model);
     }
 
-    @GetMapping("/manage_student")
-    public String showManageStudentPage() {
-        return "manage_student";
-    }
+
 
     private boolean verifyCredentials(String email, String plainPassword) {
         String sql = "SELECT password_hash FROM educators WHERE email = ?";
@@ -46,10 +44,14 @@ public class LoginController {
 
             stmt.setString(1, email);
             try (ResultSet rs = stmt.executeQuery()) {
+
                 return rs.next() && BCrypt.checkpw(plainPassword, rs.getString("password_hash"));
+
             }
         } catch (SQLException e) {
+
             e.printStackTrace();
+
         }
         return false;
     }

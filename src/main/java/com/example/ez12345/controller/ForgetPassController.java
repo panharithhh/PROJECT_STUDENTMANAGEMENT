@@ -13,6 +13,7 @@ import java.util.Properties;
 
 @Controller
 @RequestMapping("/forgetpass") // Route for both GET and POST
+
 public class ForgetPassController {
 
     private final Environment env;
@@ -40,7 +41,6 @@ public class ForgetPassController {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     String storedPassword = rs.getString("password_hash");
-
 
                     sendEmail(email, storedPassword);
                     model.addAttribute("message", "Password sent to your email.");

@@ -1,9 +1,8 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>Manage Student</title>
+    <meta charset="UTF-8">
+    <title>Manage Students</title>
     <style>
         /* Basic Reset + Font */
         * {
@@ -84,7 +83,6 @@
         /* "Remove Student" button in the container */
         .btn {
           display: inline-block;
-          background: #4CAF50;
           color: #fff;
           border: none;
           border-radius: 0.5rem;
@@ -95,8 +93,17 @@
           transition: background 0.2s;
           text-decoration: none;
         }
-        .btn:hover {
+        .btn-success {
+          background: #4CAF50;
+        }
+        .btn-success:hover {
           background: #45a049;
+        }
+        .btn-danger {
+          background: #f44336;
+        }
+        .btn-danger:hover {
+          background: #e53935;
         }
 
         /* Modal overlays (hidden by default) */
@@ -162,15 +169,11 @@
         .modal-content form button {
           margin-top: 1.5rem;
           padding: 0.75rem;
-          background: #4CAF50;
           color: #fff;
           border: none;
           border-radius: 0.5rem;
           cursor: pointer;
           font-size: 1rem;
-        }
-        .modal-content form button:hover {
-          background: #45a049;
         }
 
         /* Footer (white) */
@@ -182,8 +185,41 @@
           font-size: 0.875rem;
           color: #666;
         }
+
+        /* Data table styles */
+        .data-table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .data-table th {
+            background-color: #f2f2f2;
+            position: sticky;
+            top: 0;
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .data-table tr:hover {
+            background-color: #eaeaea;
+        }
+
+        .table-container {
+            max-height: 500px;
+            overflow-y: auto;
+        }
     </style>
 </head>
+<body>
 <!-- Hidden checkboxes for modals -->
 <input type="checkbox" id="openAddModal">
 <input type="checkbox" id="openRemoveModal">
@@ -197,8 +233,7 @@
 
 <!-- SUB NAV for Manage Student -->
 <div class="sub-nav">
-    <!-- “Add Student” triggers the Add Student modal -->
-    <label for="openAddModal">Add Student</label>
+    <!-- "Add Student" triggers the Add Student modal -->
     <!-- These link to sub-pages -->
     <a href="/attendance">Attendance</a>
     <a href="/quiz">Quiz</a>
@@ -207,17 +242,44 @@
 
 <!-- MAIN CONTAINER -->
 <div class="container">
-    <h1>Manage Student</h1>
-    <p>This is the main Manage Student page.</p>
+    <h1>Manage Students</h1>
+    <p>View and manage all student records.</p>
+
+    <!-- Add Student button triggers add modal -->
+    <button class="btn btn-success" onclick="document.getElementById('openAddModal').checked = true;">Add Student</button>
 
     <!-- Remove Student button triggers remove modal -->
-    <label for="openRemoveModal" class="btn">Remove Student</label>
+    <label for="openRemoveModal" class="btn btn-danger">Remove Student</label>
+
+    <!-- Students table -->
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Course</th>
+                <th>Academic Year</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="student : ${students}">
+                <td th:text="${student.studentId}"></td>
+                <td th:text="${student.fullName}"></td>
+                <td th:text="${student.email}"></td>
+                <td th:text="${student.course}"></td>
+                <td th:text="${student.academicYear}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <!-- ADD STUDENT MODAL -->
 <div class="modal addModal">
     <div class="modal-content">
-        <!-- “Close” unchecks #openAddModal -->
+        <!-- "Close" unchecks #openAddModal -->
         <label for="openAddModal" class="closeBtn">×</label>
         <h2>Add Student</h2>
         <form th:action="@{/add_student}" method="post">
@@ -227,8 +289,12 @@
             <label for="studentEmail">Email:</label>
             <input type="email" id="studentEmail" name="studentEmail" required>
 
-            <label for="studentId">Student ID:</label>
-            <input type="text" id="studentId" name="studentId" required>
+            <label for="studentCourse">Course:</label>
+            <input type="text" id="studentCourse" name="studentCourse" required>
+
+
+            <label for="studentAcademicYear">Academic Year:</label>
+            <input type="text" id="studentAcademicYear" name="studentAcademicYear" required>
 
             <button type="submit">Add Student</button>
         </form>
@@ -238,15 +304,19 @@
 <!-- REMOVE STUDENT MODAL -->
 <div class="modal removeModal">
     <div class="modal-content">
-        <!-- “Close” unchecks #openRemoveModal -->
+        <!-- "Close" unchecks #openRemoveModal -->
         <label for="openRemoveModal" class="closeBtn">×</label>
         <h2>Remove Student</h2>
-        <form th:action="@{/remove_student}" method="post">
-            <label for="removeId">Enter Student ID to Remove:</label>
-            <input type="text" id="removeId" name="removeId" required>
 
-            <button type="submit">Remove Student</button>
+        <form th:action="@{/delete_student}" method="post">
+            <label for="studentId">Select Student ID:</label>
+            <input type="number" id="studentId" name="studentId" required placeholder="Enter Student ID">
+
+            <button type="submit" class="btn btn-danger">Delete</button>
         </form>
     </div>
 </div>
-<body></html>
+
+
+</body>
+</html>

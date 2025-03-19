@@ -20,10 +20,7 @@ public class ManageController {
         return "forum";
     }
 
-    @GetMapping("/attendance")
-    public String showAttendance() {
-        return "attendance";
-    }
+
 
     @GetMapping("/quiz")
     public String showQuiz() {

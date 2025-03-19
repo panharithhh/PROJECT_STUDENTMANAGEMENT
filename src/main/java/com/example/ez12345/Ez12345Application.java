@@ -5,7 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-@PropertySource("classpath:application.properties") // Ensures application.properties is loaded
+@PropertySource("classpath:application.properties")
+
 public class Ez12345Application {
 
     public static void main(String[] args) {
