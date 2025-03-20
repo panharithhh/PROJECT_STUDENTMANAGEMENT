@@ -59,7 +59,9 @@ When you fork this project in IntelliJ CE, you'll need to modify the following:
 2. **Database Connection**:
     - Update the database URL in application.properties
     - Set your database username and password
-
+3. **DB_PASSWORD and APP_PASSWORD** 
+   - the way to do DB_password is your root database pass
+   - APP password in the other hand you can retrive it via gmail search on youtube if you don;t know how to
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/your_schema_name
 spring.datasource.username=your_username
@@ -81,57 +83,58 @@ mvn spring-boot:run
 4. Navigate to http://localhost:8080/login in your browser
 
 ## Database Structure
-
 The application uses a MySQL database with the following primary tables:
-
-1. **users**
-    - user_id (Primary Key)
-    - username
-    - password (hashed with BCrypt)
-    - role
-    - email
+1. **educators**
+   - educator_id (Primary Key, Auto Increment)
+   - full_name
+   - email (Unique)
+   - password_hash
 
 2. **students**
-    - student_id (Primary Key)
-    - full_name
-    - email
-    - course
-    - academic_year
+   - student_id (Primary Key, Auto Increment)
+   - full_name
+   - email (Unique)
+   - course
+   - academic_year
+   - attendance (Default 0)
+   - quiz (Default 0)
+   - homework (Default 0)
+   - midterm (Default 0)
+   - final_exam (Default 0)
 
 3. **courses**
-    - course_id (Primary Key)
-    - course_name
-    - description
-    - credit_hours
+   - course_id (Primary Key, Auto Increment)
+   - course_title
+   - description
 
-4. **enrollments**
-    - enrollment_id (Primary Key)
-    - student_id (Foreign Key)
-    - course_id (Foreign Key)
-    - enrollment_date
 
 ## Data Structure
-
 The application uses several key data models:
-
 1. **Student**
-    - Student ID
-    - Full Name
-    - Email
-    - Course
-    - Academic Year
+   - Student ID
+   - Full Name
+   - Email
+   - Course
+   - Academic Year
+   - Attendance
+   - Quiz
+   - Homework
+   - Midterm
+   - Final Exam
 
-2. **User**
-    - Username
-    - Password (hashed)
-    - Role
-    - Email
+2. **Educator**
+   - Educator ID
+   - Full Name
+   - Email
+   - Password (hashed)
 
 3. **Course**
-    - Course ID
-    - Course Name
-    - Description
-    - Credit Hours
+   - Course ID
+   - Course Title
+   - Description
+
+This revision:
+
 
 ## Class Relationships
 
@@ -154,18 +157,39 @@ The application follows an MVC architecture with the following key relationships
 
 ### Controllers
 
-- **LoginController**: Handles user authentication
-- **ManageStudentController**: Manages student CRUD operations
-- **ManageController**: Provides navigation mappings for different sections of the application
+- **LoginController**: Handles user authentication, managing login requests and redirecting users based on their authentication status
+- **ManageStudentController**: Manages student CRUD operations including listing, adding, updating, and deleting student records
+- **ManageController**: Provides navigation mappings for different sections of the application and handles general routing
+- **SignUpController**: Processes new user registration, validates input data, and creates new educator accounts
+- **ForgetPassController**: Handles password recovery functionality, allowing users to reset forgotten passwords
+- **AttendanceController**: Manages student attendance tracking, recording and displaying attendance data
+- **CreateCourseController**: Handles the creation and management of course offerings including adding new courses and updating course information
+- **ScoreController**: Manages academic scoring functionality, allowing educators to input, update, and view various assessment scores (quizzes, homework, midterms, final exams)
 
 ### Models
 
 - **Student**: Represents a student entity with properties:
-    - Student ID
-    - Full Name
-    - Email
-    - Course
-    - Academic Year
+   - Student ID
+   - Full Name
+   - Email
+   - Course
+   - Academic Year
+   - Attendance
+   - Quiz
+   - Homework
+   - Midterm
+   - Final Exam
+
+- **Educator**: Represents an educator/teacher entity with properties:
+   - Educator ID
+   - Full Name
+   - Email
+   - Password Hash
+
+- **Course**: Represents a course offering with properties:
+   - Course ID
+   - Course Title
+   - Description
 
 ### Views
 
@@ -215,4 +239,3 @@ MIT License
 
 - Chea panharith
 - Hen Chenda vottey
-- 
