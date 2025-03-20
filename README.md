@@ -213,6 +213,6 @@ MIT License
 
 ## Contributors
 
-- Chea Panharith
+- Chea panharith
 - Hen Chenda vottey
 - 
