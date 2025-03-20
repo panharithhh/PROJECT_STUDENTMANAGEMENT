@@ -8,36 +8,18 @@ CREATE TABLE educators (
 );
 
 CREATE TABLE students (
-    student_id INT PRIMARY KEY AUTO_INCREMENT,
+    student_id INT AUTO_INCREMENT PRIMARY KEY,
     full_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
-    course VARCHAR(255) NOT NULL,
-    academic_year VARCHAR(50) NOT NULL
+    course VARCHAR(100) NOT NULL,
+    academic_year VARCHAR(10) NOT NULL,
+    attendance INT DEFAULT 0,
+    attendance_percentage INT DEFAULT 0,
+    quiz INT DEFAULT 0,
+    homework INT DEFAULT 0,
+    midterm INT DEFAULT 0,
+    final_exam INT DEFAULT 0,
+    final_score INT DEFAULT 0,
+    final_attendance INT DEFAULT 0,
+    total_score INT DEFAULT 0
 );
-
--- Select data to verify
-SELECT * FROM students;
-ALTER TABLE students ADD COLUMN attendance INT DEFAULT 0;
-ALTER TABLE students ADD COLUMN attendance_percentage DECIMAL(5,2) DEFAULT 0.00;
--- Select data to verify ( i don't think score here will wrk)
-create table scores(
-
-	student_id int,
-	full_name varchar(254),
-    homework double not null,
-    midterm double not null,
-    final double not null,
-    project double not null,
-    foreign key(student_id) references students(student_id) on delete cascade
-
-    );
-
-
-    create table attendance (
-
-    	student_id int,
-        full_name varchar(100),
-        attendance int,
-    	foreign key(student_id) references students(student_id) on delete cascade
-
-    );

@@ -129,6 +129,96 @@
           border-radius: 0.5rem;
         }
 
+        .score-form {
+          background: #fff;
+          padding: 2rem;
+          border-radius: 0.5rem;
+          margin-top: 2rem;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .score-form h2 {
+          margin-bottom: 1.5rem;
+          color: #333;
+        }
+
+        .form-group {
+          margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+          display: block;
+          margin-bottom: 0.5rem;
+          font-weight: bold;
+        }
+
+        .form-group input {
+          width: 100%;
+          padding: 0.75rem;
+          border: 1px solid #ddd;
+          border-radius: 0.5rem;
+          font-size: 1rem;
+        }
+
+        .submit-btn {
+          padding: 0.75rem 1.5rem;
+          background: #4CAF50;
+          color: #fff;
+          border: none;
+          border-radius: 0.5rem;
+          cursor: pointer;
+          font-size: 1rem;
+        }
+
+        .submit-btn:hover {
+          background: #45a049;
+        }
+
+        /* Table styles */
+        .scores-table {
+          width: 100%;
+          background: #fff;
+          border-radius: 0.5rem;
+          overflow: hidden;
+          margin-top: 2rem;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .scores-table table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+
+        .scores-table th {
+          background: #f5f5f5;
+          text-align: left;
+          padding: 1rem;
+          border-bottom: 2px solid #ddd;
+          font-weight: bold;
+        }
+
+        .scores-table td {
+          padding: 1rem;
+          border-bottom: 1px solid #eee;
+        }
+
+        .scores-table tbody tr:hover {
+          background: #f9f9f9;
+        }
+
+        .scores-table .student-id {
+          width: 10%;
+        }
+
+        .scores-table .student-name {
+          width: 30%;
+        }
+
+        .scores-table .score {
+          width: 15%;
+          text-align: center;
+        }
+
         footer {
           background: #fff;
           border-top: 1px solid #ddd;
@@ -145,7 +235,6 @@
 
 <!-- TOP NAV -->
 <div class="top-nav">
-
     <a th:href="@{/manage_student}">Manage Student</a>
     <a th:href="@{/create_courses}">Create Courses</a>
     <a th:href="@{/forum}">Forum</a>
@@ -153,7 +242,6 @@
 
 <!-- SUB NAV -->
 <div class="sub-nav">
-
     <a th:href="@{/attendance}">Attendance</a>
     <a th:href="@{/quiz}" style="border-bottom:2px solid #333;">Quiz</a>
     <a th:href="@{/progress}">Progress</a>
@@ -162,10 +250,71 @@
 <!-- MAIN CONTAINER -->
 <div class="container">
     <h1>Quiz</h1>
-    <p>Placeholder content for quiz-related info.</p>
-</div>
 
-<!-- Removed Add Student Modal -->
+    <!-- Scores Table -->
+    <div class="scores-table">
+        <table>
+            <thead>
+            <tr>
+                <th class="student-id">ID</th>
+                <th class="student-name">Student Name</th>
+                <th class="score">Homework</th>
+                <th class="score">Midterm</th>
+                <th class="score">Final</th>
+                <th class="score">Project</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Thymeleaf iteration over scores list -->
+            <tr th:each="score : ${scores}">
+                <td th:text="${score.student_id}">1001</td>
+                <td th:text="${score.full_name}">John Doe</td>
+                <td th:text="${score.homework}">85.5</td>
+                <td th:text="${score.midterm}">78.0</td>
+                <td th:text="${score.final_score}">91.5</td>
+                <td th:text="${score.project}">88.0</td>
+            </tr>
+            <!-- If no scores are available, show a message -->
+            <tr th:if="${scores == null || scores.empty}">
+                <td colspan="6" style="text-align: center; padding: 2rem;">No scores available</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Score Input Form -->
+    <div class="score-form">
+        <h2>Add Student Scores</h2>
+        <form th:action="@{/add-scores}" method="post">
+            <div class="form-group">
+                <label for="studentId">Student ID:</label>
+                <input type="number" id="studentId" name="studentId" required>
+            </div>
+
+            <div class="form-group">
+                <label for="homework">Homework Score:</label>
+                <input type="number" id="homework" name="homework" step="0.01" min="0" max="100" required>
+            </div>
+
+            <div class="form-group">
+                <label for="midterm">Midterm Score:</label>
+                <input type="number" id="midterm" name="midterm" step="0.01" min="0" max="100" required>
+            </div>
+
+            <div class="form-group">
+                <label for="final">Final Exam Score:</label>
+                <input type="number" id="final" name="final_score" step="0.01" min="0" max="100" required>
+            </div>
+
+            <div class="form-group">
+                <label for="project">Project Score:</label>
+                <input type="number" id="project" name="project" step="0.01" min="0" max="100" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Scores</button>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>

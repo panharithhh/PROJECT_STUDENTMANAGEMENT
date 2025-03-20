@@ -34,10 +34,7 @@ public class ManageController {
 //        return "attendance";
 //    }
 
-    @GetMapping("/quiz")
-    public String showQuiz() {
-        return "quiz";
-    }
+
 
     @GetMapping("/progress")
     public String showProgress() {
