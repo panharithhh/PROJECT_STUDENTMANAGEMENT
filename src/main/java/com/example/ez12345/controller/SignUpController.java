@@ -32,15 +32,12 @@ public class SignUpController {
             @RequestParam("email") String email,
             @RequestParam("password") String password
     ) {
-        // Get database config from environment
         String dbUrl = env.getProperty("spring.datasource.url");
         String dbUser = env.getProperty("spring.datasource.username");
         String dbPassword = env.getProperty("spring.datasource.password");
 
-        // Define SQL query for insert
         String sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
 
-        // Insert into DB
         try (Connection con = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
              PreparedStatement pstmt = con.prepareStatement(sql)) {
 

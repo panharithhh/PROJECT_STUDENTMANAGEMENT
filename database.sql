@@ -14,12 +14,16 @@ CREATE TABLE students (
     course VARCHAR(100) NOT NULL,
     academic_year VARCHAR(10) NOT NULL,
     attendance INT DEFAULT 0,
-    attendance_percentage INT DEFAULT 0,
     quiz INT DEFAULT 0,
     homework INT DEFAULT 0,
     midterm INT DEFAULT 0,
     final_exam INT DEFAULT 0,
-    final_score INT DEFAULT 0,
-    final_attendance INT DEFAULT 0,
-    total_score INT DEFAULT 0
 );
+
+CREATE TABLE courses (
+    course_id INT AUTO_INCREMENT PRIMARY KEY,
+    course_title VARCHAR(255) NOT NULL,
+    description TEXT
+);
+
+

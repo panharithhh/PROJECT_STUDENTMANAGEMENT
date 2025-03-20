@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF - 8">
     <title>Create Courses</title>
     <style>
         /* Basic Reset + Font */
@@ -15,6 +15,9 @@
         body {
           background: #fff; /* white background */
           color: #333;      /* dark text */
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
         }
 
         /* Top Navigation Bar (white) */
@@ -47,15 +50,13 @@
           display: none;
         }
 
-        /* Main gray container */
+        /* Main gray container - modified to fill available space */
         .container {
           background: #ccc;
-          min-height: 60vh;
-          margin: 2rem auto;
-          width: 90%;
-          max-width: 1200px;
+          flex: 1;
+          width: 100%; /* Full width */
+          margin: 0;   /* Remove margins */
           padding: 2rem;
-          border-radius: 0.5rem;
           color: #000; /* black text on gray background */
         }
 
@@ -151,6 +152,51 @@
           background: #0b7dda;
         }
 
+        /* Course grid display */
+        .course-grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+          margin-top: 2rem;
+        }
+
+        .course-box {
+          background: #fff;
+          border-radius: 8px;
+          padding: 1.5rem;
+          width: calc(25% - 15px); /* 4 boxes per row with gap */
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .course-box h3 {
+          margin-bottom: 10px;
+          font-size: 1.2rem;
+        }
+
+        .course-box p {
+          color: #666;
+          font-size: 0.9rem;
+        }
+
+        /* Make grid responsive */
+        @media (max-width: 1200px) {
+          .course-box {
+            width: calc(33.33% - 14px); /* 3 boxes per row */
+          }
+        }
+
+        @media (max-width: 768px) {
+          .course-box {
+            width: calc(50% - 10px); /* 2 boxes per row */
+          }
+        }
+
+        @media (max-width: 480px) {
+          .course-box {
+            width: 100%; /* 1 box per row */
+          }
+        }
+
         /* Footer (white) */
         footer {
           background: #fff;
@@ -172,31 +218,47 @@
 <div class="top-nav">
     <a th:href="@{/manage_student}">Manage Student</a>
     <a th:href="@{/create_courses}" class="active">Create Courses</a>
-    <a th:href="@{/forum}">Forum</a>
+
 </div>
 
 <!-- MAIN CONTAINER -->
 <div class="container">
     <h1>Create / Manage Courses</h1>
-    <p>Placeholder content for adding or removing courses.</p>
+    <p>Add or remove courses from your curriculum.</p>
 
     <!-- Buttons that open modals -->
     <label for="openAddModal" class="btn">Add Course</label>
     <label for="openRemoveModal" class="btn">Remove Course</label>
+
+    <!-- Course Grid - Displays 4 courses per row -->
+    <div class="course-grid">
+        <!-- Thymeleaf iteration over courses -->
+        <div class="course-box" th:each="course : ${courses}">
+            <h3 th:text="${course.courseName}">Course Name</h3>
+            <p th:text="${course.courseId}">Course ID</p>
+            <p th:text="${course.description}">Short course description goes here.</p>
+        </div>
+
+        <!-- Example static courses (these will be shown only if no courses exist in database) -->
+
+    </div>
 </div>
 
 <!-- ADD COURSE MODAL -->
 <div class="modal addModal">
     <div class="modal-content">
-        <!-- “Close” unchecks #openAddModal -->
+        <!-- "Close" unchecks #openAddModal -->
         <label for="openAddModal" class="closeBtn">×</label>
         <h2>Add Course</h2>
-        <form>
+        <form th:action="@{/add-course}" method="post">
             <label for="courseName">Course Name:</label>
             <input type="text" id="courseName" name="courseName" required>
 
             <label for="courseId">Course ID:</label>
             <input type="text" id="courseId" name="courseId" required>
+
+            <label for="description">Course Description:</label>
+            <input type="text" id="description" name="description" required>
 
             <button type="submit" class="submit">Add Course</button>
         </form>
@@ -206,10 +268,10 @@
 <!-- REMOVE COURSE MODAL -->
 <div class="modal removeModal">
     <div class="modal-content">
-        <!-- “Close” unchecks #openRemoveModal -->
+        <!-- "Close" unchecks #openRemoveModal -->
         <label for="openRemoveModal" class="closeBtn">×</label>
         <h2>Remove Course</h2>
-        <form>
+        <form th:action="@{/remove-course}" method="post">
             <label for="removeCourseId">Enter Course ID to Remove:</label>
             <input type="text" id="removeCourseId" name="removeCourseId" required>
 
@@ -217,8 +279,6 @@
         </form>
     </div>
 </div>
-
-
 
 </body>
 </html>
