@@ -238,4 +238,6 @@ MIT License
 ## Contributors
 
 - Chea panharith
-- Hen Chenda vottey
+- Khun sotravong
+- Do Davin
+  
