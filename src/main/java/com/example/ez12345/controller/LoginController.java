@@ -15,7 +15,7 @@ public class LoginController {
     private final Environment env; // Interface and object
 
     public LoginController(Environment env) {
-        this.env = env; //
+        this.env = env;
     }
 
     @GetMapping("/login")

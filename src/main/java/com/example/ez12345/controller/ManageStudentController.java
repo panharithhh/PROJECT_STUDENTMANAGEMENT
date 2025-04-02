@@ -14,7 +14,7 @@ import java.util.List;
 @Controller
 public class ManageStudentController {
 
-    private final Environment env; // Interface and object
+    private final Environment env;
 
     public ManageStudentController(Environment env) {
         this.env = env; //
@@ -51,7 +51,7 @@ public class ManageStudentController {
 
 
         } catch (SQLException e) {
-            System.err.println("Error inserting student: " + e.getMessage());
+
             e.printStackTrace();
         }
 
@@ -72,13 +72,13 @@ public class ManageStudentController {
             int rowsDeleted = pstmt.executeUpdate();
 
             if (rowsDeleted > 0) {
-                System.out.println("Student successfully deleted.");
+                System.out.println("no stud");
             } else {
-                System.out.println("No student found with ID: " + studentId);
+                System.out.println("No stud with id " + studentId);
             }
 
         } catch (SQLException e) {
-            System.err.println("Error deleting student: " + e.getMessage());
+            System.err.println("LOL NO MESSAGE " + e.getMessage());
             e.printStackTrace();
         }
 

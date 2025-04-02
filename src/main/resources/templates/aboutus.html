@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Ensure visited links retain their color */
+        a:visited {
+          color: inherit;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-gradient-to-r from-[#93C5FD] to-[#3B82F6]">
+<!-- Top Navigation -->
+<nav class="flex items-center justify-between p-4 bg-white/20 backdrop-blur-md">
+    <div class="flex items-center">
+        <!-- ITC Logo -->
+        <img src="/images/yes.png" alt="ITC Logo" class="h-20 w-auto" />
+    </div>
+    <!-- Optionally add more nav links here -->
+</nav>
+
+<!-- Main Content (transparent container so the gradient shows) -->
+<div class="flex-1 container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold text-center text-white mb-8">Meet Our Creative Team</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Vong Card -->
+        <div class="bg-white/90 p-6 rounded-xl shadow-lg transform hover:scale-105 transition">
+            <div class="flex justify-center mb-4">
+                <img src="/images/vong.png" alt="Vong" class="w-32 h-32 object-cover rounded-full border-4 border-indigo-500" />
+            </div>
+            <h2 class="text-2xl font-bold text-center text-indigo-700 mb-2">Vong</h2>
+            <p class="text-gray-700 text-center">
+                A visionary designer, Vong believes every pixel tells a story. His passion for crafting intuitive experiences turns ideas into engaging journeys.
+            </p>
+        </div>
+        <!-- Vin Card -->
+        <div class="bg-white/90 p-6 rounded-xl shadow-lg transform hover:scale-105 transition">
+            <div class="flex justify-center mb-4">
+                <img src="/images/vin.png" alt="Vin" class="w-32 h-32 object-cover rounded-full border-4 border-indigo-500" />
+            </div>
+            <h2 class="text-2xl font-bold text-center text-indigo-700 mb-2">Vin</h2>
+            <p class="text-gray-700 text-center">
+                A coding maestro, Vin writes innovative solutions with every keystroke. His creativity pushes the boundaries of technology.
+            </p>
+        </div>
+        <!-- Rith Card -->
+        <div class="bg-white/90 p-6 rounded-xl shadow-lg transform hover:scale-105 transition">
+            <div class="flex justify-center mb-4">
+                <img src="/images/rith.png" alt="Rith" class="w-32 h-32 object-cover rounded-full border-4 border-indigo-500" />
+            </div>
+            <h2 class="text-2xl font-bold text-center text-indigo-700 mb-2">Rith</h2>
+            <p class="text-gray-700 text-center">
+                A fearless innovator, Rith turns challenges into opportunities. His creative problem-solving leaves a lasting impact on every project.
+            </p>
+        </div>
+        <!-- Mystery Profile Card (for when no profile is available) -->
+        <div class="bg-white/90 p-6 rounded-xl shadow-lg transform hover:scale-105 transition">
+            <div class="flex justify-center mb-4">
+                <div class="w-32 h-32 bg-gray-300 flex items-center justify-center rounded-full border-4 border-indigo-500">
+                    <span class="text-gray-700 font-bold text-3xl">?</span>
+                </div>
+            </div>
+            <h2 class="text-2xl font-bold text-center text-indigo-700 mb-2">Mystery</h2>
+            <p class="text-gray-700 text-center">
+                Sometimes the best ideas come from unexpected places. Our mystery profile represents creativity without boundaries.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="p-4 text-center text-white">
+    &copy; 2025 ITC. All rights reserved.
+</footer>
+</body>
+</html>

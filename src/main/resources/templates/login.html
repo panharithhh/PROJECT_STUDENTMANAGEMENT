@@ -1,132 +1,74 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <title>Minimal Login</title>
-    <style>
-
-        * {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-          font-family: sans-serif;
-        }
-
-        body {
-          background: #fff;
-        }
-
-        header {
-          background: #fff;
-          height: 3rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: relative;
-          font-weight: bold;
-          font-size: 1.2rem;
-        }
-
-        .back-arrow {
-          position: absolute;
-          left: 1rem;
-          font-size: 1.5rem;
-          cursor: pointer;
-        }
-
-        .login-container {
-          background: #ccc;
-          width: 100%;
-          min-height: calc(100vh - 3rem);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        form {
-          display: flex;
-          flex-direction: column;
-          width: 300px;
-        }
-
-        input[type="email"],
-        input[type="password"] {
-          border: none;
-          outline: none;
-          background: #fff;
-          padding: 0.75rem 1rem;
-          margin-bottom: 1.5rem; /* Increased spacing */
-          border-radius: 12px;
-          font-size: 1rem;
-          color: #333;
-        }
-
-        .password-row {
-          display: flex;
-          align-items: center;
-          background: #fff;
-          border-radius: 12px;
-          margin-bottom: 2rem; /* Increase spacing */
-        }
-        .password-row input {
-          flex: 1;
-          border: none;
-          outline: none;
-          padding: 0.75rem 1rem;
-          background: transparent;
-          border-radius: 12px 0 0 12px;
-        }
-        .password-row button {
-          border: none;
-          background: transparent;
-          padding: 0.75rem 1rem;
-          cursor: pointer;
-          font-size: 1.25rem;
-          border-radius: 0 12px 12px 0;
-        }
-        .password-row button:hover {
-          background: #eee;
-        }
-
-        .forgot-link {
-          text-align: right;
-        }
-        .forgot-link a {
-          text-decoration: none;
-          font-size: 0.875rem;
-          color: #444;
-        }
-        .forgot-link a:hover {
-          text-decoration: underline;
-        }
-
-        .error-msg {
-          color: red;
-          text-align: center;
-          margin-bottom: 1rem;
-        }
-    </style>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="min-h-screen flex flex-col bg-gradient-to-r from-[#93C5FD] to-[#3B82F6]">
 
-<header>
-    <div class="back-arrow">&larr;</div>
-    Login
-</header>
+<!-- Top Navigation -->
+<nav class="flex items-center justify-between p-4 bg-white/20 backdrop-blur-md">
+    <div class="flex items-center">
+        <!-- Back Arrow -->
+        <div class="mr-2 text-2xl cursor-pointer">&larr;</div>
+        <!-- Logo (increased size) -->
+        <img src="/images/yes.png" alt="School Logo" class="h-20 w-auto" />
+    </div>
+    <!-- About Us link -->
+    <a href="/aboutus" class="text-white hover:underline font-semibold">
+        About Us
+    </a>
+</nav>
 
-<div class="login-container">
-    <form method="post" th:action="@{/login}">
-        <input type="email" name="email" placeholder="Email" required />
-        <div class="password-row">
-            <input type="password" name="password" placeholder="Password" required />
-            <button type="submit">&rarr;</button>
+<!-- Main Container -->
+<div class="flex-1 flex items-center justify-center">
+    <form method="post" th:action="@{/login}"
+          class="bg-white/90 backdrop-blur-md p-8 rounded-xl shadow-2xl w-full max-w-md">
+
+        <h2 class="text-2xl font-bold text-center text-indigo-700 mb-6">Login</h2>
+        <!-- Email Input -->
+        <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                required
+                class="mb-4 w-full border border-gray-300 rounded-lg px-4 py-2
+                       focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+
+        <!-- Password Row -->
+        <div class="flex items-center border border-gray-300 rounded-lg mb-4
+                        bg-white focus-within:ring-2 focus-within:ring-indigo-500">
+            <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                    class="flex-1 px-4 py-2 bg-transparent rounded-l-lg
+                           focus:outline-none"
+            />
+            <button
+                    type="submit"
+                    class="px-4 py-2 text-2xl text-gray-700 hover:bg-gray-100
+                           rounded-r-lg"
+            >
+                &rarr;
+            </button>
         </div>
 
-        <!-- Error message from backend -->
-        <div class="error-msg" th:if="${error}" th:text="${error}"></div>
+        <!-- Error Message (Thymeleaf) -->
+        <div class="text-red-600 text-center mb-4"
+             th:if="${error}"
+             th:text="${error}">
+        </div>
 
-        <div class="forgot-link">
-            <a href="/forgetpass">Forget password</a>
+        <!-- Forgot Password Link -->
+        <div class="text-right">
+            <a href="/forgetpass" class="text-indigo-600 hover:underline">
+                Forget password
+            </a>
         </div>
     </form>
 </div>

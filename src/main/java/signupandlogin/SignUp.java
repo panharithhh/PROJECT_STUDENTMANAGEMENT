@@ -85,7 +85,7 @@ public class SignUp {
             message.setText("Your authentication code is: " +authenticationCode);
 
             Transport.send(message);
-            System.out.println("Email sent successfully.");
+
             return true;
 
         } catch (MessagingException e) {

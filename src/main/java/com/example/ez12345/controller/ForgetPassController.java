@@ -12,7 +12,7 @@ import java.util.Properties;
 
 
 @Controller
-@RequestMapping("/forgetpass") // Route for both GET and POST
+@RequestMapping("/forgetpass")
 
 public class ForgetPassController {
 
@@ -29,7 +29,7 @@ public class ForgetPassController {
 
     @GetMapping
     public String showForgetPassPage() {
-        return "forgetpass"; //
+        return "forgetpass";
     }
 
     @PostMapping
@@ -84,7 +84,7 @@ public class ForgetPassController {
             message.setSubject("Your Password Recovery");
             message.setText("Your password is: " + password);
             Transport.send(message);
-            System.out.println("✅ Email sent successfully.");
+
         } catch (MessagingException e) {
             e.printStackTrace();
         }

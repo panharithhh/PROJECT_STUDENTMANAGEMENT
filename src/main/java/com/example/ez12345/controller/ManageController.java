@@ -15,8 +15,12 @@ public class ManageController {
 
     @GetMapping("/addAttendance")
     public String showAddAttendanceForm() {
-        return "add_attendance"; // e.g., an HTML template with the form
+        return "add_attendance";
     }
 
+    @GetMapping("/aboutus")
+    public String showAboutUs() {
+        return "aboutus";
+    }
 }
 

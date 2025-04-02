@@ -1,134 +1,44 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Forget Password</title>
-    <style>
-        * {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-          font-family: sans-serif;
-        }
-
-        body {
-          background: #fff;
-        }
-
-        /* Header with left arrow & title centered */
-        header {
-          background: #fff;
-          height: 3rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: relative;
-          font-weight: bold;
-          font-size: 1.2rem;
-        }
-
-        .back-arrow {
-          position: absolute;
-          left: 1rem;
-          font-size: 1.5rem;
-          cursor: pointer;
-        }
-
-        /* Gray container */
-        .forget-container {
-          background: #ccc;
-          width: 100%;
-          min-height: calc(100vh - 3rem);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        /* Form styling */
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem; /* Adds spacing between elements */
-        }
-
-        .email-row {
-          display: flex;
-          align-items: center;
-          background: #fff;
-          border-radius: 12px;
-          padding: 0.75rem;
-        }
-
-        .email-row input {
-          border: none;
-          outline: none;
-          background: transparent;
-          font-size: 1rem;
-          flex: 1;
-          padding: 0 0.5rem;
-          color: #333;
-        }
-
-        .email-row button {
-          border: none;
-          background: transparent;
-          cursor: pointer;
-          font-size: 1.25rem;
-          border-radius: 8px;
-          margin-left: 0.5rem;
-        }
-        .email-row button:hover {
-          background: #eee;
-        }
-
-        label {
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        input[type="email"] {
-            width: 250px;
-            padding: 10px;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
-
-        button {
-            width: 200px;
-            padding: 10px;
-            font-size: 1rem;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #555;
-        }
-    </style>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<header>
-    <div class="back-arrow">&larr;</div>
-    Forget password
-</header>
+<body class="min-h-screen flex flex-col bg-gradient-to-r from-[#93C5FD] to-[#3B82F6]">
+<!-- Top Navigation -->
+<nav class="flex items-center justify-between p-4 bg-white/20 backdrop-blur-md">
+    <div class="flex items-center">
+        <!-- Back Arrow -->
+        <div class="mr-2 text-2xl cursor-pointer">&larr;</div>
+        <!-- Logo -->
+        <img src="/images/yes.png" alt="School Logo" class="h-20 w-auto" />
+    </div>
+    <!-- About Us Link -->
+    <a href="/aboutus" class="text-white hover:underline font-semibold">About Us</a>
+</nav>
 
-<div class="forget-container">
-    <!-- ✅ Updated to use Thymeleaf -->
-    <form action="/forgetpass" method="post">
-        <label for="email">Enter your email:</label>
-        <input type="email" id="email" name="email" required>
-        <button type="submit">Send Password</button>
+<!-- Main Container -->
+<div class="flex-1 flex items-center justify-center">
+    <form action="/forgetpass" method="post" class="bg-white/90 backdrop-blur-md p-8 rounded-xl shadow-2xl w-full max-w-md">
+        <label for="email" class="block text-gray-700 font-semibold mb-2 text-center text-xl">
+            Enter your email:
+        </label>
+        <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+        <button
+                type="submit"
+                class="w-full bg-indigo-600 text-white rounded-lg px-4 py-2 text-lg font-semibold hover:bg-indigo-700 transition-colors"
+        >
+            Send Password
+        </button>
     </form>
-
-
-
 </div>
-
 </body>
 </html>

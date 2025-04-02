@@ -6,213 +6,198 @@
     <style>
         /* Basic Reset + Font */
         * {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-          font-family: sans-serif;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
         }
         body {
-          background: #fff; /* white background */
-          color: #333;      /* dark text */
+            background: linear-gradient(45deg, #93C5FD, #3B82F6);
+            color: #333;
         }
-
-        /* Top Navigation Bar (white) */
+        /* Top Navigation Bar with blue accents */
         .top-nav {
-          background: #fff;
-          border-bottom: 1px solid #ddd;
-          padding: 1rem; /* more spacious */
-          display: flex;
-          justify-content: center; /* center the nav items */
-          gap: 2rem;              /* spacing between items */
+            background: rgba(255,255,255,0.8);
+            border-bottom: 1px solid #3B82F6;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
         }
         .top-nav a {
-          color: #333;
-          text-decoration: none;
-          padding: 0.5rem 1.5rem; /* bigger padding for more space */
-          border-radius: 0.5rem;
-          transition: background 0.2s;
+            color: #3B82F6;
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background 0.2s;
         }
         .top-nav a:hover {
-          background: #eee;
+            background: #e0e7ff;
         }
         .top-nav a.active {
-          font-weight: bold;
-          border-bottom: 2px solid #333;
+            font-weight: bold;
+            border-bottom: 2px solid #3B82F6;
         }
-
         /* Sub-navigation bar (for Manage Student) */
         .sub-nav {
-          background: #fff;
-          border-bottom: 1px solid #ddd;
-          padding: 0.75rem;
-          display: flex;
-          justify-content: center;
-          gap: 2rem;
+            background: rgba(255,255,255,0.8);
+            border-bottom: 1px solid #3B82F6;
+            padding: 0.75rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
         }
         .sub-nav a,
         .sub-nav label {
-          color: #333;
-          text-decoration: none;
-          padding: 0.5rem 1.5rem;
-          border-radius: 0.5rem;
-          transition: background 0.2s;
-          cursor: pointer;
+            color: #3B82F6;
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background 0.2s;
+            cursor: pointer;
         }
         .sub-nav a:hover,
         .sub-nav label:hover {
-          background: #eee;
+            background: #e0e7ff;
         }
-
         /* Hidden checkboxes for modals */
         #openAddModal,
         #openRemoveModal {
-          display: none;
+            display: none;
         }
-
-        /* Main gray container */
+        /* Main container */
         .container {
-          background: #ccc;
-          min-height: 60vh;
-          margin: 2rem auto;
-          width: 90%;
-          max-width: 1200px;
-          padding: 2rem;
-          border-radius: 0.5rem;
+            background: rgba(255,255,255,0.9);
+            min-height: 60vh;
+            margin: 2rem auto;
+            width: 90%;
+            max-width: 1200px;
+            padding: 2rem;
+            border-radius: 0.5rem;
         }
-
-        /* "Remove Student" button in the container */
+        /* Button styles */
         .btn {
-          display: inline-block;
-          color: #fff;
-          border: none;
-          border-radius: 0.5rem;
-          padding: 0.75rem 1.5rem;
-          margin: 1rem 0;
-          cursor: pointer;
-          font-size: 1rem;
-          transition: background 0.2s;
-          text-decoration: none;
+            display: inline-block;
+            color: #fff;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            margin: 1rem 0;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
+            text-decoration: none;
         }
         .btn-success {
-          background: #4CAF50;
+            background: #3B82F6;
         }
         .btn-success:hover {
-          background: #45a049;
+            background: #2563EB;
         }
         .btn-danger {
-          background: #f44336;
+            background: #f44336;
         }
         .btn-danger:hover {
-          background: #e53935;
+            background: #e53935;
         }
-
         /* Modal overlays (hidden by default) */
         .modal {
-          display: none;
-          position: fixed;
-          z-index: 999;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0,0,0,0.5);
-          justify-content: center;
-          align-items: center;
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
         }
         /* Show .addModal if #openAddModal is checked */
         #openAddModal:checked ~ .addModal {
-          display: flex;
+            display: flex;
         }
         /* Show .removeModal if #openRemoveModal is checked */
         #openRemoveModal:checked ~ .removeModal {
-          display: flex;
+            display: flex;
         }
-
         /* Modal content box */
         .modal-content {
-          background: #fff;
-          color: #333;
-          padding: 2rem;
-          border-radius: 0.5rem;
-          min-width: 300px;
-          position: relative;
+            background: #fff;
+            color: #333;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            min-width: 300px;
+            position: relative;
         }
         /* Close button (the X) */
         .closeBtn {
-          position: absolute;
-          top: 0.5rem;
-          right: 1rem;
-          font-size: 1.5rem;
-          color: #999;
-          cursor: pointer;
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: #999;
+            cursor: pointer;
         }
         .closeBtn:hover {
-          color: #333;
+            color: #333;
         }
-
         /* Form inside modal */
         .modal-content form {
-          display: flex;
-          flex-direction: column;
-          margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            margin-top: 1rem;
         }
         .modal-content form label {
-          margin-top: 1rem;
-          font-weight: bold;
+            margin-top: 1rem;
+            font-weight: bold;
         }
         .modal-content form input {
-          margin-top: 0.5rem;
-          padding: 0.75rem;
-          border: 1px solid #ddd;
-          border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
         }
         .modal-content form button {
-          margin-top: 1.5rem;
-          padding: 0.75rem;
-          color: #fff;
-          border: none;
-          border-radius: 0.5rem;
-          cursor: pointer;
-          font-size: 1rem;
+            margin-top: 1.5rem;
+            padding: 0.75rem;
+            color: #fff;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
         }
-
-        /* Footer (white) */
+        /* Footer */
         footer {
-          background: #fff;
-          border-top: 1px solid #ddd;
-          text-align: center;
-          padding: 1rem;
-          font-size: 0.875rem;
-          color: #666;
+            background: rgba(255,255,255,0.8);
+            border-top: 1px solid #3B82F6;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.875rem;
+            color: #3B82F6;
         }
-
         /* Data table styles */
         .data-table {
             border-collapse: collapse;
             width: 100%;
             margin: 20px 0;
         }
-
         .data-table th, .data-table td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
         }
-
         .data-table th {
-            background-color: #f2f2f2;
+            background-color: #e0e7ff;
             position: sticky;
             top: 0;
         }
-
         .data-table tr:nth-child(even) {
             background-color: #f9f9f9;
         }
-
         .data-table tr:hover {
             background-color: #eaeaea;
         }
-
         .table-container {
             max-height: 500px;
             overflow-y: auto;
@@ -228,16 +213,12 @@
 <div class="top-nav">
     <a href="/manage_student" class="active">Manage Student</a>
     <a href="/create_courses">Create Courses</a>
-
 </div>
 
 <!-- SUB NAV for Manage Student -->
 <div class="sub-nav">
-    <!-- "Add Student" triggers the Add Student modal -->
-    <!-- These link to sub-pages -->
     <a href="/attendance">Attendance</a>
     <a href="/quiz">Quiz</a>
-
 </div>
 
 <!-- MAIN CONTAINER -->
@@ -245,11 +226,11 @@
     <h1>Manage Students</h1>
     <p>View and manage all student records.</p>
 
-    <!-- Add Student button triggers add modal -->
-    <button class="btn btn-success" onclick="document.getElementById('openAddModal').checked = true;">Add Student</button>
+    <!-- Add Student button triggers add modal with plus icon -->
+    <button class="btn btn-success" onclick="document.getElementById('openAddModal').checked = true;">➕ Add Student</button>
 
-    <!-- Remove Student button triggers remove modal -->
-    <label for="openRemoveModal" class="btn btn-danger">Remove Student</label>
+    <!-- Remove Student button triggers remove modal with trash icon -->
+    <label for="openRemoveModal" class="btn btn-danger">🗑 Remove Student</label>
 
     <!-- Students table -->
     <div class="table-container">
@@ -266,7 +247,10 @@
             <tbody>
             <tr th:each="student : ${students}">
                 <td th:text="${student.studentId}"></td>
-                <td th:text="${student.fullName}"></td>
+                <!-- Make username clickable to load profile -->
+                <td>
+                    <a th:href="@{/profile/{id}(id=${student.studentId})}" class="text-blue-600 hover:underline" th:text="${student.fullName}"></a>
+                </td>
                 <td th:text="${student.email}"></td>
                 <td th:text="${student.course}"></td>
                 <td th:text="${student.academicYear}"></td>
@@ -292,7 +276,6 @@
             <label for="studentCourse">Course:</label>
             <input type="text" id="studentCourse" name="studentCourse" required>
 
-
             <label for="studentAcademicYear">Academic Year:</label>
             <input type="text" id="studentAcademicYear" name="studentAcademicYear" required>
 
@@ -300,23 +283,51 @@
         </form>
     </div>
 </div>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Profile</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex flex-col bg-gradient-to-r from-[#93C5FD] to-[#3B82F6]">
+<!-- Header with back link -->
+<header class="p-4">
+    <a href="/manage_student" class="text-white hover:underline">&larr; Back</a>
+</header>
 
+<!-- Main Content -->
+<main class="flex-1 container mx-auto px-4 py-8 bg-white/90 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold mb-4" th:text="${student.fullName}">Student Name</h1>
+    <p class="mb-2"><strong>Email:</strong> <span th:text="${student.email}">student@example.com</span></p>
+    <p class="mb-2"><strong>Course:</strong> <span th:text="${student.course}">Course Name</span></p>
+    <p class="mb-2"><strong>Academic Year:</strong> <span th:text="${student.academicYear}">Year</span></p>
+</main>
+
+<!-- Footer -->
+<footer class="p-4 text-center text-white">
+    &copy; 2025 ITC. All rights reserved.
+</footer>
+</body>
+</html>
 <!-- REMOVE STUDENT MODAL -->
 <div class="modal removeModal">
     <div class="modal-content">
         <!-- "Close" unchecks #openRemoveModal -->
         <label for="openRemoveModal" class="closeBtn">×</label>
         <h2>Remove Student</h2>
-
         <form th:action="@{/delete_student}" method="post">
             <label for="studentId">Select Student ID:</label>
             <input type="number" id="studentId" name="studentId" required placeholder="Enter Student ID">
-
             <button type="submit" class="btn btn-danger">Delete</button>
         </form>
     </div>
 </div>
 
-
+<!-- FOOTER -->
+<footer>
+    &copy; 2025 ITC. All rights reserved.
+</footer>
 </body>
 </html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Profile</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex flex-col bg-gradient-to-r from-[#93C5FD] to-[#3B82F6]">
+<!-- Header with back link -->
+<header class="p-4">
+    <a href="/manage_student" class="text-white hover:underline">&larr; Back</a>
+</header>
+
+<!-- Main Content -->
+<main class="flex-1 container mx-auto px-4 py-8 bg-white/90 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold mb-4" th:text="${student.fullName}">Student Name</h1>
+    <p class="mb-2"><strong>Email:</strong> <span th:text="${student.email}">student@example.com</span></p>
+    <p class="mb-2"><strong>Course:</strong> <span th:text="${student.course}">Course Name</span></p>
+    <p class="mb-2"><strong>Academic Year:</strong> <span th:text="${student.academicYear}">Year</span></p>
+</main>
+
+
+</body>
+</html>

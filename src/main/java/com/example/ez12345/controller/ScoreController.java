@@ -68,11 +68,13 @@ public class ScoreController {
         String sql = "SELECT student_id, full_name, homework, midterm, final_exam, quiz FROM students";
 
         try (Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
                 Map<String, Object> student = new HashMap<>();
+
                 student.put("student_id", rs.getInt("student_id"));
                 student.put("full_name", rs.getString("full_name"));
                 student.put("homework", rs.getDouble("homework"));
